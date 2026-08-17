@@ -166,6 +166,19 @@ if uploaded_video is not None:
                     full_times
                 )[jump_points]
 
+                time_100 = None
+                time_200 = None
+                time_300 = None
+
+                if jump_count >= 100:
+                    time_100 = jump_times[99] - jump_times[0]
+
+                if jump_count >= 200:
+                    time_200 = jump_times[199] - jump_times[0]
+
+                if jump_count >= 300:
+                    time_300 = jump_times[299] - jump_times[0]
+
 
                 # ----------------------------
                 # 実際に跳んでいた時間
@@ -214,7 +227,16 @@ if uploaded_video is not None:
                         "ペース",
                         f"{pace:.1f} 回/分"
                     )
+                    st.subheader("達成タイム")
 
+                    if time_100 is not None:
+                        st.write(f"100回：{time_100:.2f} 秒")
+
+                    if time_200 is not None:
+                        st.write(f"200回：{time_200:.2f} 秒")
+
+                    if time_300 is not None:
+                        st.write(f"300回：{time_300:.2f} 秒")
                 else:
 
                     st.error(
